@@ -1,0 +1,456 @@
+/* ---------- Botón ---------- */
+.btn {
+  --c: var(--cyan-500);
+  --c-txt: var(--cyan-300);
+  --c-bg: rgba(0, 50, 59, .6);
+  --c-hover: rgba(0, 224, 255, .2);
+  position: relative;
+  overflow: hidden;
+  padding: 12px 28px;
+  cursor: pointer;
+  font: 600 14px/1 var(--font-display);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-txt);
+  background: var(--c-bg);
+  border: 1px solid var(--c);
+  clip-path: polygon(var(--bevel) 0, 100% 0, 100% calc(100% - var(--bevel)), calc(100% - var(--bevel)) 100%, 0 100%, 0 var(--bevel));
+  transition: background 160ms var(--ease-mech), box-shadow 160ms var(--ease-mech), transform 80ms var(--ease-mech);
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(105deg, transparent 35%, rgba(143, 243, 255, .45) 50%, transparent 65%);
+}
+
+.btn:hover {
+  background: var(--c-hover);
+  box-shadow: 0 0 16px var(--cyan-glow), inset 0 0 12px rgba(0, 224, 255, .15);
+}
+
+.btn:hover::before {
+  transform: translateX(120%);
+  transition: transform 300ms var(--ease-mech);
+}
+
+.btn:active {
+  background: var(--c);
+  color: var(--metal-950);
+  transform: translateY(1px);
+  animation: confirm-blink 120ms steps(2) 1;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--cyan-300);
+  outline-offset: 3px;
+}
+
+.btn--secondary {
+  --c: var(--olive-500);
+  --c-txt: var(--olive-300);
+  --c-bg: var(--olive-900);
+  --c-hover: var(--olive-700);
+}
+
+.btn--danger {
+  --c: var(--red-500);
+  --c-txt: var(--red-400);
+  --c-bg: var(--red-900);
+  --c-hover: rgba(255, 45, 61, .25);
+}
+
+.btn--danger:hover {
+  animation: blink .6s steps(2) infinite;
+}
+
+.btn--ghost {
+  --c: transparent;
+  --c-bg: transparent;
+  clip-path: none;
+  padding: 10px 16px;
+}
+
+.btn--ghost::after {
+  content: "";
+}
+
+.btn:disabled {
+  color: var(--metal-400);
+  border-color: var(--metal-500);
+  box-shadow: none;
+  cursor: not-allowed;
+  animation: none;
+  background: repeating-linear-gradient(135deg, var(--metal-800) 0 6px, var(--metal-900) 6px 12px);
+}
+
+.btn:disabled::before {
+  display: none;
+}
+
+.btn--ghost:not(:disabled):hover::after {
+  content: "";
+}
+
+/* ---------- Panel ---------- */
+.panel {
+  --accent: var(--cyan-500);
+  position: relative;
+  padding: 0 20px 20px;
+  background: linear-gradient(180deg, rgba(0, 224, 255, .07), rgba(12, 16, 20, .9));
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  backdrop-filter: blur(6px);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 16px;
+  height: 1px;
+  background: var(--cyan-300);
+  opacity: .7;
+}
+
+.panel__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 -20px 16px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--metal-700);
+}
+
+.panel__head::before {
+  content: "";
+  width: 3px;
+  align-self: stretch;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.panel__head h3 {
+  flex: 1;
+  font-size: 18px;
+}
+
+.panel__code {
+  font: 12px var(--font-mono);
+  letter-spacing: .1em;
+  color: var(--metal-300);
+}
+
+/* ---------- Estado / chips ---------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.stat-grid dt {
+  color: var(--metal-300);
+  letter-spacing: .1em;
+}
+
+.stat-grid dd {
+  margin: 0;
+  color: var(--metal-100);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--olive-300);
+  box-shadow: 0 0 6px currentColor;
+  color: var(--olive-300);
+}
+
+.dot--warn {
+  background: var(--amber-500);
+  color: var(--amber-500);
+}
+
+.dot--crit {
+  background: var(--red-500);
+  color: var(--red-500);
+  animation: blink 1s steps(2) infinite;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px 4px 10px;
+  font: 12px var(--font-mono);
+  letter-spacing: .12em;
+  color: var(--olive-300);
+  background: var(--olive-900);
+  border: 1px solid var(--olive-500);
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+
+.chip--warn {
+  color: var(--amber-400);
+  background: var(--amber-900);
+  border-color: var(--amber-500);
+}
+
+.chip--crit {
+  color: var(--red-400);
+  background: var(--red-900);
+  border-color: var(--red-500);
+}
+
+/* ---------- Alerta ---------- */
+.alert {
+  --accent: var(--amber-500);
+  --accent-bg: var(--amber-900);
+  position: relative;
+  padding: 0 20px 16px;
+  max-width: 440px;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 3px), linear-gradient(180deg, var(--accent-bg), rgba(12, 16, 20, .92));
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.alert--critical {
+  --accent: var(--red-500);
+  --accent-bg: var(--red-900);
+}
+
+.alert__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 -20px 14px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--accent);
+  background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--accent) 25%, transparent) 0 10px, transparent 10px 20px);
+}
+
+.alert__head h3 {
+  flex: 1;
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.alert__icon {
+  color: var(--accent);
+  animation: blink 1s steps(2) infinite;
+}
+
+.alert__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* ---------- Barras ---------- */
+.seg {
+  display: flex;
+  gap: 3px;
+}
+
+.seg i {
+  flex: 1;
+  height: 10px;
+  background: var(--metal-700);
+  transition: background 120ms var(--ease-mech), box-shadow 120ms var(--ease-mech);
+}
+
+.seg i.on {
+  background: var(--bar, var(--cyan-500));
+  box-shadow: 0 0 6px var(--bar, var(--cyan-500));
+}
+
+.seg--low {
+  --bar: var(--amber-500);
+}
+
+.seg--low i.on {
+  animation: blink 1s steps(2) infinite;
+}
+
+.meter {
+  position: relative;
+  height: 12px;
+  background: var(--metal-800);
+  border: 1px solid var(--metal-600);
+}
+
+.meter__fill {
+  height: 100%;
+  background: var(--bar);
+  box-shadow: 0 0 8px var(--bar);
+  transition: width 240ms var(--ease-mech);
+}
+
+.meter::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgba(0, 0, 0, .6) calc(10% - 1px) 10%);
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font: 12px var(--font-mono);
+  letter-spacing: .12em;
+  margin-bottom: 6px;
+  color: var(--metal-300);
+}
+
+/* ---------- Circular y radar ---------- */
+.ring {
+  position: relative;
+  width: var(--size, 120px);
+  height: var(--size, 120px);
+}
+
+.ring svg {
+  transform: rotate(135deg);
+}
+
+.ring__track {
+  stroke: var(--metal-700);
+}
+
+.ring__val {
+  stroke: var(--cyan-500);
+  filter: drop-shadow(0 0 4px var(--cyan-500));
+  transition: stroke-dashoffset 300ms var(--ease-mech);
+}
+
+.ring__num {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: 700 24px var(--font-display);
+  color: var(--metal-100);
+}
+
+.radar {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--cyan-700);
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 24%, rgba(0, 224, 255, .15) 24.5%, transparent 25.5% 49%, rgba(0, 224, 255, .15) 49.5%, transparent 50.5% 74%, rgba(0, 224, 255, .15) 74.5%, transparent 75.5%),
+    linear-gradient(var(--cyan-700), var(--cyan-700)) center/1px 100% no-repeat, linear-gradient(var(--cyan-700), var(--cyan-700)) center/100% 1px no-repeat, var(--metal-900);
+  overflow: hidden;
+}
+
+.radar__sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(0, 224, 255, .5), transparent 25%);
+  animation: spin 4s linear infinite;
+}
+
+.radar__blip {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--red-500);
+  box-shadow: 0 0 6px var(--red-500);
+  animation: blink 2s steps(3) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: .25;
+  }
+}
+
+@keyframes confirm-blink {
+  50% {
+    opacity: .35;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Layout showcase ---------- */
+.shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.shell>header {
+  margin-bottom: 32px;
+}
+
+.shell>header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+}
+
+.shell>header p {
+  color: var(--metal-300);
+  max-width: 60ch;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 6px;
+}
+
+.swatch {
+  height: 44px;
+  display: flex;
+  align-items: flex-end;
+  padding: 3px 4px;
+  font: 10px var(--font-mono);
+  color: #fff;
+  mix-blend-mode: normal;
+  text-shadow: 0 0 3px #000;
+  border: 1px solid var(--metal-600);
+}

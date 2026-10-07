@@ -1,0 +1,64 @@
+:root {
+  --metal-950: #07090B;
+  --metal-900: #0C1014;
+  --metal-800: #141A20;
+  --metal-700: #1E262E;
+  --metal-600: #2B353F;
+  --metal-500: #3D4A56;
+  --metal-400: #5C6B78;
+  --metal-300: #8A9AA7;
+  --metal-200: #B4C0C9;
+  --metal-100: #DCE3E8;
+  --cyan-300: #8FF3FF;
+  --cyan-400: #4FEBFF;
+  --cyan-500: #00E0FF;
+  --cyan-600: #00AFC9;
+  --cyan-700: #00788C;
+  --cyan-900: #00323B;
+  --cyan-glow: rgba(0, 224, 255, .35);
+  --olive-300: #A8C46E;
+  --olive-500: #6B8A3A;
+  --olive-700: #425626;
+  --olive-900: #1F2A12;
+  --amber-400: #FFC233;
+  --amber-500: #FFA400;
+  --amber-900: #3D2800;
+  --red-400: #FF5A66;
+  --red-500: #FF2D3D;
+  --red-900: #3A0A10;
+
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+
+  --ease-mech: cubic-bezier(.2, .8, .2, 1);
+  --bevel: 10px;
+  --space: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--metal-200);
+  font: 500 16px/1.5 var(--font-body);
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(0, 224, 255, .07), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 3px),
+    var(--metal-950);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--metal-100);
+  margin: 0;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
